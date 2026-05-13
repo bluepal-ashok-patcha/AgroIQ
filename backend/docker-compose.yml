@@ -1,0 +1,106 @@
+version: '3.8'
+
+services:
+  discovery-service:
+    build:
+      context: .
+      dockerfile: discovery-service/Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - agroiq-network
+
+  api-gateway-service:
+    build:
+      context: .
+      dockerfile: api-gateway-service/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - discovery-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    networks:
+      - agroiq-network
+
+  core-domain-service:
+    build:
+      context: .
+      dockerfile: core-domain-service/Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - discovery-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    networks:
+      - agroiq-network
+
+  ingestion-service:
+    build:
+      context: .
+      dockerfile: ingestion-service/Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - discovery-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    networks:
+      - agroiq-network
+
+  stream-intelligence-service:
+    build:
+      context: .
+      dockerfile: stream-intelligence-service/Dockerfile
+    ports:
+      - "8083:8083"
+    depends_on:
+      - discovery-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    networks:
+      - agroiq-network
+
+  risk-recommendation-service:
+    build:
+      context: .
+      dockerfile: risk-recommendation-service/Dockerfile
+    ports:
+      - "8084:8084"
+    depends_on:
+      - discovery-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    networks:
+      - agroiq-network
+
+  alert-notification-service:
+    build:
+      context: .
+      dockerfile: alert-notification-service/Dockerfile
+    ports:
+      - "8085:8085"
+    depends_on:
+      - discovery-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    networks:
+      - agroiq-network
+
+  analytics-etl-service:
+    build:
+      context: .
+      dockerfile: analytics-etl-service/Dockerfile
+    ports:
+      - "8086:8086"
+    depends_on:
+      - discovery-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    networks:
+      - agroiq-network
+
+networks:
+  agroiq-network:
+    driver: bridge
