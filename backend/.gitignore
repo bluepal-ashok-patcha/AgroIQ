@@ -1,0 +1,15 @@
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+.mvn/
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+bin/
+dependency-reduced-pom.xml
