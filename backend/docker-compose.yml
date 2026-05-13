@@ -7,6 +7,11 @@ services:
       dockerfile: discovery-service/Dockerfile
     ports:
       - "8761:8761"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - agroiq-network
 
@@ -17,9 +22,15 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - discovery-service
+      discovery-service:
+        condition: service_healthy
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - agroiq-network
 
@@ -30,9 +41,15 @@ services:
     ports:
       - "8081:8081"
     depends_on:
-      - discovery-service
+      discovery-service:
+        condition: service_healthy
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - agroiq-network
 
@@ -43,9 +60,15 @@ services:
     ports:
       - "8082:8082"
     depends_on:
-      - discovery-service
+      discovery-service:
+        condition: service_healthy
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - agroiq-network
 
@@ -56,9 +79,15 @@ services:
     ports:
       - "8083:8083"
     depends_on:
-      - discovery-service
+      discovery-service:
+        condition: service_healthy
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8083/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - agroiq-network
 
@@ -69,9 +98,15 @@ services:
     ports:
       - "8084:8084"
     depends_on:
-      - discovery-service
+      discovery-service:
+        condition: service_healthy
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - agroiq-network
 
@@ -82,9 +117,15 @@ services:
     ports:
       - "8085:8085"
     depends_on:
-      - discovery-service
+      discovery-service:
+        condition: service_healthy
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - agroiq-network
 
@@ -95,9 +136,15 @@ services:
     ports:
       - "8086:8086"
     depends_on:
-      - discovery-service
+      discovery-service:
+        condition: service_healthy
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - agroiq-network
 
