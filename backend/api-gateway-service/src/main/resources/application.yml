@@ -10,6 +10,31 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      routes:
+        - id: core-domain-service
+          uri: lb://core-domain-service
+          predicates:
+            - Path=/api/core/**
+        - id: ingestion-service
+          uri: lb://ingestion-service
+          predicates:
+            - Path=/api/ingestion/**
+        - id: stream-intelligence-service
+          uri: lb://stream-intelligence-service
+          predicates:
+            - Path=/api/stream/**
+        - id: risk-recommendation-service
+          uri: lb://risk-recommendation-service
+          predicates:
+            - Path=/api/risk/**
+        - id: alert-notification-service
+          uri: lb://alert-notification-service
+          predicates:
+            - Path=/api/alert/**
+        - id: analytics-etl-service
+          uri: lb://analytics-etl-service
+          predicates:
+            - Path=/api/analytics/**
 
 eureka:
   client:
