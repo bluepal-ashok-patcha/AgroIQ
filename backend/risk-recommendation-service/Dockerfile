@@ -10,6 +10,7 @@ COPY stream-intelligence-service/pom.xml stream-intelligence-service/
 COPY risk-recommendation-service/pom.xml risk-recommendation-service/
 COPY alert-notification-service/pom.xml alert-notification-service/
 COPY analytics-etl-service/pom.xml analytics-etl-service/
+COPY simulator-service/pom.xml simulator-service/
 
 RUN mvn -pl risk-recommendation-service -am dependency:go-offline
 COPY risk-recommendation-service/src risk-recommendation-service/src
