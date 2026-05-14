@@ -28,6 +28,7 @@
 		<module>risk-recommendation-service</module>
 		<module>alert-notification-service</module>
 		<module>analytics-etl-service</module>
+		<module>simulator-service</module>
 	</modules>
 
 	<dependencyManagement>

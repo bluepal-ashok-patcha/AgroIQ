@@ -35,6 +35,10 @@ spring:
           uri: lb://analytics-etl-service
           predicates:
             - Path=/api/analytics/**
+        - id: simulator-service
+          uri: lb://simulator-service
+          predicates:
+            - Path=/api/simulator/**
 
 eureka:
   client:
